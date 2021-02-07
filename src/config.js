@@ -1,4 +1,25 @@
-export default {
-  isBackend: process.env.REACT_APP_BACKEND,
-  id_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjpmYWxzZSwibG9naW4iOiJ1c2VyIiwiaWF0IjoxNTczNzQ4ODI1LCJleHAiOjE2MjA0MDQ4MjV9.Jd1Trqu6izHq2R3uw4enrDlQKG4mzZdipSMdYQD_9JM'
-};
+import  firebase from 'firebase/app';
+import "firebase/firestore"
+import "firebase/database"
+import  "firebase/auth"
+
+const app = firebase.initializeApp({
+  apiKey: "AIzaSyA33m3UHqvOooYf7HFQULi4dETvyP9ay5g",
+  authDomain: "flash-delivery-5d8a9.firebaseapp.com",
+  projectId: "flash-delivery-5d8a9",
+  storageBucket: "flash-delivery-5d8a9.appspot.com",
+  messagingSenderId: "584007073227",
+  appId: "1:584007073227:web:42f151a66e89f8a752ca4e",
+  measurementId: "G-L55KQ908SR"
+
+});
+
+const projectFirestore = firebase.firestore();
+const projectDatabase = firebase.database();
+const projectAuh = firebase.auth();
+
+
+
+export {projectFirestore,projectDatabase,projectAuh}
+
+export default app
