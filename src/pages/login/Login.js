@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
@@ -15,36 +14,13 @@ import s from './Login.module.scss';
 import Widget from '../../components/Widget';
 import Footer from "../../components/Footer";
 import { loginUser } from '../../actions/user';
-import jwt from 'jsonwebtoken';
-import config from '../../config'
+
 
 class Login extends React.Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
-    isFetching: PropTypes.bool,
-    location: PropTypes.any, // eslint-disable-line
-    errorMessage: PropTypes.string,
-  };
 
-  static defaultProps = {
-    isAuthenticated: false,
-    isFetching: false,
-    location: {},
-    errorMessage: null,
-  };
 
-  static isAuthenticated(token) {
-    // We check if app runs with backend mode
-    if (!config.isBackend && token) return true;
-    if (!token) return;
-    const date = new Date().getTime() / 1000;
-    const data = jwt.decode(token);
-    return date < data.exp;
-}
 
-  constructor(props) {
-    super(props);
+
 
     this.state = {
       login: 'user',
@@ -52,33 +28,7 @@ class Login extends React.Component {
     };
   }
 
-  changeLogin = (event) => {
-    this.setState({login: event.target.value});
-  }
-
-  changePassword = (event) => {
-    this.setState({password: event.target.value});
-  }
-
-  doLogin = (e) => {
-    this.props.dispatch(
-      loginUser({
-        login: this.state.login,
-        password: this.state.password,
-      }),
-    );
-    e.preventDefault();
-  }
-
-  render() {
-    const {from} = this.props.location.state || {
-      from: {pathname: '/app'},
-    };
-
-    if (this.props.isAuthenticated) {
-      // cant access login page while logged in
-      return <Redirect to={from} />;
-    }
+  
 
         return (
           <div className={s.root}>
