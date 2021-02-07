@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter ,Link} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-
-import ErrorPage from '../pages/error';
-
+import '../../../react-admin/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import '../styles/theme.scss';
 import LayoutComponent from '../components/Layout';
 //import DocumentationLayoutComponent from '../documentation/DocumentationLayout';
@@ -14,43 +13,68 @@ import Register from '../pages/register';
 import { logoutUser } from '../actions/user';
 
 const PrivateRoute = ({dispatch, component, ...rest }) => {
-    if (!Login.isAuthenticated(localStorage.getItem('id_token'))) {
-        dispatch(logoutUser());
+
+        // dispatch(logoutUser());
         return (<Redirect to="/login"/>)
-    }
-
-    else {
 
 
-        return ( // eslint-disable-line
-            <Route {...rest} render={props => (React.createElement(component, props))}/>
-        );
-    }
+
+
+
+        // return ( // eslint-disable-line
+        //     <Route {...rest} render={props => (React.createElement(component, props))}/>
+        // );
+
 };
 
-const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-close notifications-close"/>
+
 
 class App extends React.PureComponent {
     render() {
         return (
             <div>
-                <ToastContainer
-                    autoClose={5000}
-                    hideProgressBar
-                    closeButton={<CloseButton/>}
-                />
+
                 <HashRouter>
-                    <Switch>
-                        <Route path="/" exact render={() => <Redirect to="/app/main"/>}/>
-                        <Route path="/app" exact render={() => <Redirect to="/app/main"/>}/>
-                        <PrivateRoute path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>
-                        <Route path="/documentation" exact
-                               render={() => <Redirect to="/documentation/getting-started/overview"/>}/>
-                        {/* <Route path="/documentation" component={DocumentationLayoutComponent}/> */}
-                        <Route path="/register" exact component={Register}/>
-                        <Route path="/login" exact component={Login}/>
-                        <Route path="/error" exact component={ErrorPage}/>
-                    </Switch>
+                    {/*<Switch>*/}
+                    {/*    <Route path="/" exact render={() => <Redirect to="/app/main"/>}/>*/}
+                    {/*    <Route path="/app" exact render={() => <Redirect to="/app/main"/>}/>*/}
+                    {/*    <PrivateRoute path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>*/}
+                    {/*    <Route path="/documentation" exact*/}
+                    {/*           render={() => <Redirect to="/documentation/getting-started/overview"/>}/>*/}
+                    {/*    /!* <Route path="/documentation" component={DocumentationLayoutComponent}/> *!/*/}
+                    {/*    <Route path="/register" exact component={Register}/>*/}
+                    {/*    <Route path="/login" exact component={Login}/>*/}
+                    {/*    <Route path="/error" exact component={ErrorPage}/>*/}
+                    {/*</Switch>*/}
+                    <div className="App">
+                        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+                            <div className="container">
+                                <Link className="navbar-brand" to={"/sign-in"}>positronX.io</Link>
+                                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                                    <ul className="navbar-nav ml-auto">
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
+                        <div className="auth-wrapper">
+                            <div className="auth-inner">
+                                <Switch>
+                                    <Route exact path='/' component={Login} />
+                                    <Route path="/sign-in" component={Login} />
+                                    {/*<Route path="/sign-up" component={SignUp} />*/}
+                                </Switch>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </HashRouter>
             </div>
 

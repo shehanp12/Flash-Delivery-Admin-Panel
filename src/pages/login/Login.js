@@ -17,86 +17,40 @@ import { loginUser } from '../../actions/user';
 
 
 class Login extends React.Component {
+  render() {
+    return (
+        <form>
+          <h3>Sign In</h3>
 
+          <div className="form-group">
+            <label>Email address</label>
+            <input type="email" className="form-control" placeholder="Enter email" />
+          </div>
 
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" className="form-control" placeholder="Enter password" />
+          </div>
 
+          <div className="form-group">
+            <div className="custom-control custom-checkbox">
+              <input type="checkbox" className="custom-control-input" id="customCheck1" />
+              <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+            </div>
+          </div>
 
-
-    this.state = {
-      login: 'user',
-      password: 'password',
-    };
+          <button type="submit" className="btn btn-primary btn-block">Submit</button>
+          <p className="forgot-password text-right">
+            Forgot <a href="#">password?</a>
+          </p>
+        </form>
+    );
   }
 
-  
-
-        return (
-          <div className={s.root}>
-          <Row>
-            <Col xs={{size: 10, offset: 1}} sm={{size: 6, offset: 3}} lg={{size:4, offset: 4}}>
-              <p className="text-center">  Flash Delivery</p>
-              <Widget className={s.widget}>
-                <h4 className="mt-0">Login to your Web App</h4>
-                <p className="fs-sm text-muted">
-                  User your username and password to sign in<br />
-                  Don&#39;t have an account? Sign up now!
-                </p>
-                <Form className="mt" onSubmit={this.doLogin}>
-                  {this.props.errorMessage && (
-                    <Alert size="sm" color="danger">
-                      {this.props.errorMessage}
-                    </Alert>
-                  )}
-                  <FormGroup className="form-group">
-                    <Input
-                      className="no-border"
-                      value={this.state.login}
-                      onChange={this.changeLogin}
-                      type="text"
-                      required
-                      name="username"
-                      placeholder="Username"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Input
-                      className="no-border"
-                      value={this.state.password}
-                      onChange={this.changePassword}
-                      type="password"
-                      required
-                      name="password"
-                      placeholder="Password"
-                    />
-                  </FormGroup>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <a href="#" className="fs-sm">Trouble with account?</a> {/* eslint-disable-line */}
-                    <div>
-                      <Button color="default" size="sm">
-                        Create an account
-                      </Button>
-                      <Button color="success" size="sm" type="submit">
-                        {this.props.isFetching ? 'Loading...' : 'Login'}
-                      </Button>
-                    </div>
-                  </div>
-                </Form>
-              </Widget>
-            </Col>
-          </Row>
-          <Footer className="text-center" />
-          </div>
-        );
-    }
 }
 
-function mapStateToProps(state) {
-    return {
-        isFetching: state.auth.isFetching,
-        isAuthenticated: state.auth.isAuthenticated,
-        errorMessage: state.auth.errorMessage,
-    };
-}
 
-export default withRouter(connect(mapStateToProps)(Login));
+
+
+export default Login;
 
