@@ -1,21 +1,4 @@
 import React from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { 
-  Alert, 
-  Button, 
-  FormGroup, 
-  Input, 
-  Row,
-  Col,
-  Form
-} from 'reactstrap';
-import s from './Login.module.scss';
-import Widget from '../../components/Widget';
-import Footer from "../../components/Footer";
-import { loginUser } from '../../actions/user';
-
-
 class Login extends React.Component {
   render() {
     return (

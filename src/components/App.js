@@ -2,29 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router';
 import { HashRouter ,Link} from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import '../../../react-admin/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import '../styles/theme.scss';
-import LayoutComponent from '../components/Layout';
-//import DocumentationLayoutComponent from '../documentation/DocumentationLayout';
 import Login from '../pages/login';
-import Register from '../pages/register';
-import { logoutUser } from '../actions/user';
 
 const PrivateRoute = ({dispatch, component, ...rest }) => {
-
         // dispatch(logoutUser());
-        return (<Redirect to="/login"/>)
-
-
-
-
-
+        // return (<Redirect to="/login"/>)
         // return ( // eslint-disable-line
         //     <Route {...rest} render={props => (React.createElement(component, props))}/>
         // );
-
 };
 
 
@@ -32,8 +19,6 @@ const PrivateRoute = ({dispatch, component, ...rest }) => {
 class App extends React.PureComponent {
     render() {
         return (
-            <div>
-
                 <HashRouter>
                     {/*<Switch>*/}
                     {/*    <Route path="/" exact render={() => <Redirect to="/app/main"/>}/>*/}
@@ -49,7 +34,7 @@ class App extends React.PureComponent {
                     <div className="App">
                         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                             <div className="container">
-                                <Link className="navbar-brand" to={"/sign-in"}>positronX.io</Link>
+                                <Link className="navbar-brand" to={"/sign-in"}>Flash Delivery</Link>
                                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                                     <ul className="navbar-nav ml-auto">
                                         <li className="nav-item">
@@ -73,11 +58,7 @@ class App extends React.PureComponent {
                             </div>
                         </div>
                     </div>
-
-
                 </HashRouter>
-            </div>
-
         );
     }
 }
